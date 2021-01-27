@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/muhammadsuryo31/Pair-Project-Helsinsky-Fox#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "pg": "^8.5.1",
     "sequelize": "^6.5.0"
   },
