@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/style') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./partials/navbar") %>
+    <h1>Add Product</h1>
+    <% if (error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+    <form action="/products/add" method="POST">
+        <label>Product Name</label>
+        <br>
+        <input type="text" name="name">
+        <br>
+        <label>Product Type</label>
+        <br>
+        <input type="text" name="type">
+        <br>
+        <label>Assigned to</label>
+        <br>
+        <select name="OperatorId">
+            <% for (let a = 0; a <data.length; a++){ %>
+                <option value="<%= data[a].id %>"><%=data[a].name %></option>
+            <% } %>
+        </select>
+        <br>
+        <button type="submit">submit</button>
+        <button><a href="/products/list" style="text-decoration: none; color: black;">Cancel</a></button>
+    </form>
+</body>
+</html>

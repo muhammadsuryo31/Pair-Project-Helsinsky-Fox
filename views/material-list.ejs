@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/style') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./partials/navbar") %>
+    <h1>Raw Material List</h1>
+    <h2>restock  per batch = 100 unit</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Availability</th>
+                <th>Restock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let a = 0; a<data.length; a++) { %>
+                <tr>
+                    <td><%= a+1 %></td>
+                    <td><%= data[a].name %></td>
+                    <td><%= data[a].availability %></td>
+                    <td><a href="/products/material/restock/<%=data[a].id %>">Restock</a></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    
+</body>
+</html>
