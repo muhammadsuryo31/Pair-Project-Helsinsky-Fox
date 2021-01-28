@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/style') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./partials/navbar") %>
+    <h1>Add Raw Material to Product</h1>
+    <br>
+    <h2>Product Name</h2>
+    <h1> <%= productData[0].name %></h1>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let d = 0; d < data2.length; d++) { %>
+                <tr>
+                    <td><%= d+1 %></td>
+                    <td><%= data2[d].name %></td>
+                    <td><%= data2[d].availability %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <% if (error) %> {
+        <h3 style="color: red;"><%= error %></h3>
+    }
+    <form action="/products/detail/<%= id%>" method="post">
+        <label>Add Raw Material</label>
+        <br>
+        <select name="RawMaterialId">
+            <option value="">--SELECT RAW MATERIAL---</option>
+            <% for (let a = 0; a < data2.length; a++){ %>
+            <option value="<%= data2[a].id %>"> <%= data2[a].name %> </option> 
+            <%  } %>
+        </select>
+        <br>
+        <label>Add Amount: </label>
+        <br>
+        <input type="number" name="amount">
+        <br>
+        <button type="submit">Save</button>
+        <button><a href="/products/list">Cancel</a></button>
+    </form>
+    <h3 style="text-align: center;">List Raw Material</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (productData[0].ProductRawMaterials.length > 0) { %>
+                <% for (let b = 0; b < data2.length; b++){ %>
+                    <tr>
+                    <% for (let c = 0; c < productData[0].ProductRawMaterials.length; c++){ %>
+                        <% if (data2[b].id === productData[0].ProductRawMaterials[c].RawMaterialId){ %>
+                            <td><%= data2[b].name %></td>
+                            <td><%= productData[0].ProductRawMaterials[c].amount %></td>
+                            <td><a href="/products/usedmaterialplus/<%= productData[0].id %>/<%= data2[b].id %>">Increase</a></td>
+                            <td><a href="/products/usedmaterialminus/<%= productData[0].id %>/<%= data2[b].id %>">Decrease</a></td>
+                        <% } %>
+                    <% } %>
+                </tr>
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>

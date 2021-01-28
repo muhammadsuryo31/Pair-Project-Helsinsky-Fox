@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/style') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./partials/navbar") %>
+    <h1>Add Raw Material</h1>
+    <% if (error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+    <form action="/products/addmaterial" method="POST">
+        <label>Material Name</label>
+        <br>
+        <input type="text" name="name">
+        <br>
+        <label>Total Material Bought</label>
+        <br>
+        <input type="number" name="availability">
+        <br>
+        <button type="submit">submit</button>
+        <button><a href="/products/material">Cancel</a></button>
+    </form>
+</body>
+</html>

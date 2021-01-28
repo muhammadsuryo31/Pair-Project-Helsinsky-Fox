@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/style') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <%- include("./partials/navbar") %>
+    <h1>Add Operator</h1>
+    <% if (error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+    <form action="/products/register" method="POST">
+        <label>Operator Name</label>
+        <br>
+        <input type="text" name="name">
+        <br>
+        <label>Operator Email</label>
+        <br>
+        <input type="text" name="email">
+        <br>
+        <button type="submit">submit</button>
+        <button><a href="/products/Operator">Cancel</a></button>
+    </form>
+</body>
+</html>
