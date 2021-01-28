@@ -7,29 +7,23 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Registration</h1>
+    
+    <%- include("./partials/navbar") %>
+    <h1>Add Operator</h1>
     <% if (error) { %>
         <p style="color: red;"><%= error %></p>
     <% } %>
-    <form action="/register" method="post">
-        <label>name</label>
+    <form action="/products/register" method="POST">
+        <label>Operator Name</label>
         <br>
         <input type="text" name="name">
         <br>
-        <label>User Name</label>
-        <br>
-        <input type="text" name="username">
-        <br>
-        <label>Email</label>
+        <label>Operator Email</label>
         <br>
         <input type="text" name="email">
         <br>
-        <label>Password</label>
-        <br>
-        <input type="password" name="password">
-        <br>
-        <button type="submit">Save</button>
-        <button><a href="/">Cancel</a></button>
+        <button type="submit">submit</button>
+        <button><a href="/products/Operator">Cancel</a></button>
     </form>
 </body>
 </html>

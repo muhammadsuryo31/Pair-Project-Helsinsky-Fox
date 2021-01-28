@@ -2,7 +2,6 @@
 const {
   Model
 } = require('sequelize');
-const { hash } = require("../helpers/hasher");
 module.exports = (sequelize, DataTypes) => {
   class Operator extends Model {
     /**
@@ -12,20 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Operator.hasMany(models.Product)
+      Operator.hasMany(models.Product, {foreignKey: "OperatorId"})
     }
   };
   Operator.init({
-    name: DataTypes.STRING,
-    username:DataTypes.STRING,
-    email:DataTypes.STRING,
-    password:DataTypes.STRING
+    name:  {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {msg: "nama tidak boleh kosong"}
+      }
+    },
+    email:{
+      type: DataTypes.STRING,
+      validate: {
+          isEmail: {msg: "email tidak boleh kosong dan harus berformat email"}
+      }
+    },
   }, {
     sequelize,
     modelName: 'Operator',
-  });
-  Operator.addHook('beforeCreate', (data,options) => {
-    data.password = hash(data.password)
   });
   return Operator;
 };

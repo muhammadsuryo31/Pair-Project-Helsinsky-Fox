@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/style') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./partials/navbar") %>
+    <h1>Operator List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let a = 0; a<data.length; a++) { %>
+                <tr>
+                    <td><%= a+1 %></td>
+                    <td><%= data[a].name %></td>
+                    <td><%= data[a].email %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>

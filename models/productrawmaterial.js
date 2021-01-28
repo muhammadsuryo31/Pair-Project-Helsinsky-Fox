@@ -17,8 +17,25 @@ module.exports = (sequelize, DataTypes) => {
   };
   ProductRawMaterial.init({
     ProductId: DataTypes.INTEGER,
-    RawMaterialId: DataTypes.INTEGER,
-    amount: DataTypes.INTEGER
+    RawMaterialId:  {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: {
+          args: 1,
+          msg: "Raw Material tidak boleh kosong"
+        }
+      }
+    },
+    amount:  {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {msg: " amount tidak boleh kosong"},
+        min: {
+          args: 1,
+          msg: "amount minimal 1 buah dan tidak boleh minus"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'ProductRawMaterial',

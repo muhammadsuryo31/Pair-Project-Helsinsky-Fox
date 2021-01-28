@@ -17,9 +17,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Product.init({
-    name: DataTypes.STRING,
-    type: DataTypes.STRING,
-    OperatorId: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {msg: "nama produk tidak boleh kosong"}
+      }
+    },
+    type: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {msg: "tipe produk tidak boleh kosong"}
+      }
+    },
+    OperatorId: {
+      type: DataTypes.INTEGER,
+    }
   }, {
     sequelize,
     modelName: 'Product',

@@ -16,8 +16,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   RawMaterial.init({
-    name: DataTypes.STRING,
-    availability: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {msg: "nama raw material tidak boleh kosong"}
+      }
+    },
+    availability: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {msg: " Jumlah pembelian tidak boleh kosong"},
+        min: {
+          args: 1,
+          msg: "pembelian minimal 1 buah dan tidak boleh minus"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'RawMaterial',
