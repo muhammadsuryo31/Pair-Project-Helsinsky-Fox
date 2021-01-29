@@ -203,15 +203,14 @@ class Product2 {
                     if (data[0].availability < amount) {
                         res.redirect(`/products/detail/${ProductId}?alert= ${["amount melebihi availability"]}`)
                     } else {
-                        console.log("masuk sini");
                         return RawMaterial.decrement('availability', {by: amount, where: {id:RawMaterialId}})
+                        .then(() => {
+                            return ProductRawMaterial.create(newData)
+                        })
+                        .then(() => {
+                            res.redirect(`/products/detail/${ProductId}`)
+                        })
                     }
-                })
-                .then(() => {
-                    return ProductRawMaterial.create(newData)
-                })
-                .then(() => {
-                    res.redirect(`/products/detail/${ProductId}`)
                 })
                 .catch(err => {
                     console.log(err);
